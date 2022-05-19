@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Panel - Thoughts</title>
+
+    <!-- Main stylesheet -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Specific stylesheet -->
+    <link href="/thoughts/style.css" rel="stylesheet">
+
+    <!-- Import Robot font -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    >
+
+    <!-- Import icon library -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    > 
+
+  </head>
+  <body>
+
+    <!-- Header -->
+    <div class="page-top">
+      <h1>DVM</h1>
+      <h2>STUDIO</h2>            
+    </div>
+
+    <!-- Header navigation bar -->
+    <div class="top-nav">
+      <a href="schedule.html" title="Schedule Page">SCHEDULE</a>
+      <a class="active" href="thoughts.html" title="Thoughts Page">THOUGHTS</a>
+      <a href="books.html" title="Books Page">BOOKS</a>
+      <a class="icon">
+        <i class="fa fa-bars"></i>
+      </a> 
+    </div>
+
+    <!-- Main content -->
+    <div class="page-main">
+      <button class="btn-default">New Thought</button>
+
+      <!-- Form to search thoughts -->
+      <form name="form-search-thoughts">
+        <input class="input-default" type="text" placeholder="Type something..." required>
+        <span>
+          <button class="btn-default" type="submit">Search</button>
+          <button class="btn-default" type="reset">Clear</button>
+        </span>
+      </form>
+
+      <!-- Space for all thoughts created -->
+      <div class="thoughts-list"></div> 
+
+      <!-- Modal for thought view (hidden by default) -->
+      <div class="modal thought-view">
+        <div class="m-content">
+
+          <!-- Close modal button -->
+          <span class="m-view-close">&times;</span>
+
+          <!-- Thought id (hide for user, will be used in js) -->
+          <span hidden name="m-thought-id"></span>
+          
+          <span class="m-thought-date"></span>
+          <h2 class="m-thought-title"></h2>
+          <p class="m-thought-content"></p>
+
+          <button class="btn-default" name="delete">DELETE</button>
+
+        </div>
+      </div>
+
+      <!-- Modal for thought creation (Hidden by default) -->
+      <div class="modal create-thought">
+        <div class="m-content">
+
+          <!-- Close modal button --> 
+          <span class="m-creation-close">&times;</span>
+
+          <h2>Creating a new thought</h2>
+          <form name="form-create-thought">
+            <label>Date</label>
+            <input disabled type="text" name="input-date">            
+
+            <label>Title</label>
+            <input type="text" name="input-title" placeholder="Thought title..." required>            
+
+            <label>Thought</label>
+            <textarea name="input-content" placeholder="Write your thought..." required></textarea>
+
+            <input class="btn-default" name="create" type="submit" value="Create">              
+          </form>
+        </div>
+      </div>        
+    </div>
+
+    <footer>
+      Copyright © Rafael Dutra 
+    </footer>
+
+    <script src="/thoughts/thoughtsScript.js"></script>
+
+  </body>
+</html>
