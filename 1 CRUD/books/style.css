@@ -1,0 +1,280 @@
+/* Página inteira */
+body {
+  /* Centralizando conteúdo*/
+  text-align: center;
+  /* Centralizando */
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  color: #000000;
+}
+
+/* Cabeçalho */
+.page-top {
+  background-color: #028cf3;
+  font-weight: 900;
+  padding: 1em;
+  color: #ffffff;
+}
+
+/* Título do cabeçalho */
+.page-top h1 {
+  margin: 0;
+  font-size: 6em;
+}
+
+/* Subtítulo do cabeçalho */
+.page-top h2 {
+  margin: 0;
+  font-size: 1em;
+}
+
+/* Barra de navegação superior */
+.top-nav {
+  background-color: #20cbc1;
+  /* Sobre o atributo: https://developer.mozilla.org/en-US/docs/Web/CSS/overflow */
+  overflow: hidden;
+}
+
+/* Links da barra de navegação superior */
+.top-nav a {
+  color: #303030;
+  text-decoration-line: none;
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding: 14px 16px;
+  display: inline-block;
+}
+
+/* Ao passar o mouse pelos links da barra de navegação superior */
+.top-nav a:hover {
+  background-color: #17b696;
+  color: rgb(255, 255, 255);
+  /* Deixa a transição de cor mais suave */
+  transition: 0.2s;
+}
+
+/* Página selecionada */
+.top-nav a.active {
+  background-color: #028cf3;
+  color: white;
+}
+
+/* Por padrão, o ícone de responsividade fica oculto */
+.top-nav .icon {
+  display: none;
+}
+
+/* 
+   Os próximos estilos serão adicionados apenas de a tela tiver, no máximo 600px. É
+   isso que me garante responsividade.
+*/
+@media screen and (max-width: 600px) {
+  /* Todos os elementos 'a' que não tiverem a classse 'active' (a:not(.active)) serão ocultados */
+  .top-nav a:not(.active) {
+    display: none;
+  }
+
+  /* Sobre o float: https://developer.mozilla.org/en-US/docs/Web/CSS/float */
+  .top-nav .active {
+    float: left;
+  }
+
+  .top-nav a.icon {
+    float: right;
+    display: block;
+  }
+
+  /* 
+    Através do JS, quando o usuário clicar no ícone de menu, a classe 'responsive' será adicionada
+    na barra de navegação superior. Abra o arquivo e visualize, pra facilitar o entendimento.
+  */
+  .top-nav.responsive {
+    position: relative;
+  }
+
+  .top-nav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  .top-nav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+} /* Fim da responsividade da barra de navegação */
+
+/* Conteúdo principal */
+.page-main {
+  width: 70%;
+  margin: 0 auto;
+  padding: 0px 0px 15px 0px;
+}
+
+/* Formulário de pesquisa */
+.page-main form {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+/* Estilo padrão dos inputs na página */
+.input-default {
+  width: 70%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: transparent;
+  box-shadow: 0px 3px 5px #028cf3;
+  font-size: 16px;
+}
+
+/* Estilo pra quando o usuário tiver clicado no input */
+.input-default:focus {
+  outline: none;
+}
+
+/* Estilo padrão para os botões da página */
+.btn-default {
+  background-color: #028cf3;
+  color: white;
+  border: transparent;
+  border-radius: 3px;
+  font-size: 16px;
+  padding: 12px 20px;
+  box-shadow: 0px 3px 5px #20cbc1;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+/* Estilo pra quando o usuário passar o mouse sobre o botão */
+.btn-default:hover {
+  background-color: #0b4b7c;
+  transition: 0.2s;
+}
+
+.books-list {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+
+.book {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #028cf3;
+  margin: 10px;
+  padding: 30px 10px 20px 10px;
+  position: relative;
+  background-color: #028cf3;
+  color: #fff;
+  box-shadow: 0px 3px 5px #20cbc1;
+}
+
+.book:hover {
+  background-color: #0b4b7c;
+  transition: 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.book-id {
+  position: absolute;
+  left: 5px;
+  top: 4px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.book-title {
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.book-date {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.m-book-date {
+  position: absolute;
+  color: #aaa;
+  left: 10px;
+  top: 14px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* Estilo padrão para os dois modais */
+.modal {
+  /* Oculto por padrão. Esse atributo será modificado no JS */
+  display: none;
+  position: fixed;
+  /* Define o elemento no eixo Z */
+  /* Sobre o atributo: https://developer.mozilla.org/en-US/docs/Web/CSS/z-index */
+  z-index: 1;
+  /* Fazendo a região do modal ocupar toda a tela */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  /* Definindo essa região pra ser trasnparente */
+  background-color: rgba(0, 0, 0, 0.4);
+
+  /*
+   Esses estilos de cima serviram pra definir toda aquela região escura e transparente
+   que fica em volta da caixa branca que você preenche as informações.
+  */
+}
+
+/* Esse estilo é que define como vai ficar a 'caixa branca'*/
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 70%;
+  position: relative;
+}
+
+/* Botão de fechar (Estilo que serve para os dois modais */
+.m-close {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Estilo que vai ser aplicado quando o usuário passar o mouse sobre o botão de fechar */
+.m-close:hover {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilização dos inputs */
+.modal-content input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+/* Estilização dos inputs */
+.modal-content textarea {
+  resize: vertical;
+}

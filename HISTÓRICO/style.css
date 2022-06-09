@@ -1,0 +1,247 @@
+body {
+    text-align: center;
+    margin: 0; 
+    font-family: 'Roboto', sans-serif;
+    color: #000000;
+}
+
+.page-top {
+    background-color: #028CF3;    
+    font-weight: 900;
+    padding: 1em;
+    color: #ffffff;
+}
+
+.page-top h1 {
+    margin: 0;
+    font-size: 6em;     
+}
+
+.page-top h2 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.top-nav {
+    background-color: #20CBC1;
+    overflow: hidden;
+}
+
+.top-nav a {
+    color: #303030;
+    text-decoration-line: none;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 14px 16px;
+    display: inline-block;
+}
+
+.top-nav a:hover { 
+    background-color: #17b696;     
+    color: rgb(255, 255, 255);  
+    transition: 0.2s; 
+}
+
+.top-nav a.active {
+    background-color: #028CF3;
+    color: white;
+}
+
+.top-nav .icon {display: none;}
+
+@media screen and (max-width: 600px) {
+    .top-nav a:not(.active) {display: none;}
+    .top-nav a.icon {
+        float: right;
+        display: block;
+    }
+
+    .top-nav.responsive {position: relative;}
+    .top-nav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .top-nav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+
+.page-main {padding: 15px 0px 15px 0px;}
+
+.page-main form {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.input-default {
+    width: 70%;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: transparent;
+    box-shadow: 0px 3px 5px #028CF3;
+    font-size: 16px;    
+}
+
+.input-default:focus {outline: none;}
+
+.btn-default {
+    background-color: #028CF3;
+    color: white;
+    border: transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    padding: 12px 20px; 
+    box-shadow: 0px 3px 5px #20CBC1;
+    cursor: pointer;
+}
+
+.btn-default:hover {
+    background-color: #0b4b7c;
+    transition: 0.2s; 
+}
+
+@media screen and (max-width: 600px) {
+    .input-default {
+        margin: auto;
+        width: 80%;
+    }
+
+    .btn-default {margin-top: 15px;}
+
+    .page-main {padding-top: 0px;}
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.m-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; 
+    position: relative;
+}
+
+.m-close{
+    position: absolute;
+    right: 10px;
+    top: 4px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.m-close:hover,
+.m-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}  
+
+.m-content input[type="text"], input[type="number"], textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+}
+
+.m-content textarea {resize: vertical;}
+
+/*
+.items {
+    padding: 0 12px;
+    font-size: 20px;
+}
+
+.items ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+.items li {
+    padding: 15px 10px 15px 10px;
+    margin: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 2px;
+    border-color: #028CF3;
+    cursor: pointer;
+    position: relative;
+    word-break: break-word;
+}
+
+.items li:hover {
+    background-color: #028CF3;
+    color: #ffffff;
+    transition: 0.2s;
+}
+
+.items li.checked {
+    background: #888;
+    color: #ffffff;
+    text-decoration: line-through;
+}
+
+.items li.checked::before {
+    content: '';
+    position: absolute;
+    border-color: #fff;
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    top: 15px;
+    left: 16px;
+    transform: rotate(45deg);
+    height: 15px;
+    width: 7px;
+}
+
+.items h2 {
+    margin: 20px 0 20px 0;
+}
+
+.dateFinished {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    font-size: 12px;
+}
+
+.closeBTN {
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+    padding: 10px;
+}
+
+.todo-btns {
+    margin-top: 20px;
+}
+
+#history li {
+    background: #888;
+    color: #ffffff;
+}
+
+
+.input:invalid {
+    border-color: rgb(124, 11, 11);
+}*/

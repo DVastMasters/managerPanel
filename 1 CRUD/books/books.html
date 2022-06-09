@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Meu Painel</title>
+
+    <!-- Main stylesheet -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Importa a fonte Roboto -->
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" 
+      rel="stylesheet"
+    >
+
+    <!-- Importa uma biblioteca de ícones -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    > 
+
+  </head>
+  <body>
+
+    <!-- Cabeçalho -->
+    <div class="page-top">
+      <h1>DVM</h1>
+      <h2>STUDIO</h2>            
+    </div>
+
+    <!-- Barra de navegação superior -->
+    <div class="top-nav">
+      <a href="#" title="Página 1">Página 1</a>
+      <a href="#" title="Página 2">Página 2</a>
+      <a class="active" href="books.html" title="Resenhas">Resenhas</a>
+      
+      <!-- 
+          Esse elemento (juntamento com o css) deixa a barra de navegação mais responsiva.
+          Experimente diminuir, horizontalmente, a janela do navegador e veja o ícone aparecer.
+      -->
+      <a class="icon">
+        <i class="fa fa-bars"></i>
+      </a> 
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div class="page-main">
+      <button name="create" class="btn-default">Nova Resenha</button>
+
+      <!-- Fomulário para pesquisar resenhas -->
+      <form name="form-search-books">
+        <input class="input-default" type="text" placeholder="Escreva alguma coisa..." required>
+        <button class="btn-default">Pesquisar</button>
+      </form>
+
+      <!-- 
+          Div para mostrar todas as resenhas feitas. Essa é a div que o JS vai usar
+          pra colocar os elementos dinamicamente criados.
+      -->
+      <div class="books-list"></div> 
+
+      <!-- Modal pra visualizar uam resenha (oculto por padrão) -->
+      <div class="modal review-view" class="">
+        <div class="m-content">
+
+          <!-- Botão para fechar o modal -->
+          <span class="m-view-close">&times;</span>
+
+          <!-- Id da resenha (oculto para o usuário, mas será usado no JS) -->
+          <p hidden name="review-id"></p> 
+
+          <span class="m-review-date"></span>
+          <h2 class="m-book-title"></h2>
+          <h2 class="m-book-rating"></h2></h2>
+          <p class="m-review-content"></p>
+
+          <button class="btn-default" name="delete">APAGAR</button>
+
+        </div>
+      </div>
+
+      <!-- Modal para criar uma resenha (oculto por padrão) -->
+        <div class="modal create-review">
+          <div class="modal-content">
+
+            <!-- Botão para fechar o modal -->
+            <span class="modal-creation-close m-close">&times;</span>
+
+            <h2>Criando uma nova resenha</h2>
+            <form name="form-create-review">                        
+
+              <label>Data</label>
+              <input disabled type="text" name="input-date">
+              
+              <label>Título</label>
+              <input type="text" name="input-title" placeholder="Título do livro" required>
+
+              <label>Nota</label>
+              <select name="input-rating" required>
+                <option value="1">1/5</option>
+                <option value="2">2/5</option>
+                <option value="3">3/5</option>
+                <option value="4">4/5</option>
+                <option value="5">5/5</option>
+              </select>
+
+              <label>Resenha</label>
+              <textarea name="input-review" placeholder="Escreva sua resenha.." required></textarea>
+
+              <input class="btn-default" name="create" type="submit" value="Cadastrar">
+                
+            </form>
+          </div>
+        </div>   
+
+    </div>
+    <footer>
+        Copyright © Rafael Dutra 
+    </footer>
+
+    <script src="booksScript.js"></script>
+
+  </body>
+</html>
