@@ -1,34 +1,44 @@
 <?php
 
-// Connect to the mysql server.
-$mysqli = new mysqli("localhost", "root", "toor", "dvmstudio");
-if ($mysqli->connect_error) 
-{
-    echo "Connect error: " . $mysqli->connect_error;
-    exit();
-}
+    $mysqli = new mysqli("localhost", "root", "toor", "dvmstudio");
+    if ($mysqli->connect_error) 
+    {
+        echo "Connect error: " . $mysqli->connect_error;
+        exit();
+    }
 
-// Create a JSON object.
-$data = json_decode($_POST['data']);
+    // php://input é uma coleção de dados que recebe todos os dados da requisição depois dos
+    // cabeçalhos, ou seja, o corpo da requisição fica armazenado nessa coleção.
 
-// Get 0 if books tables is empty, otherwise get the last id in the table.
-$last_id = $mysqli->query("SELECT CASE 
-                                      WHEN EXISTS(SELECT 1 FROM books_review) 
-                                        THEN(SELECT id FROM books_review ORDER BY id DESC LIMIT 1)
-                                      ELSE 0
-                                  END AS id")->fetch_assoc()['id'];  
+    //file_get_contents é uma função que lê um arquivo e passa a informação lida para uma string.
+    // Para saber mais: https://www.php.net/manual/en/function.file-get-contents.php
 
-// Insert a new item into the database with the last id + 1.
-$result = $mysqli->query("INSERT INTO books_review VALUES ($last_id+1,$data->date,$data->rating,'$data->title','$data->review')");
-if (!$result)
-{
-    echo false;
-}
-else
-{
-    echo true;    
-}
+    // Pega o corpo da requisição
+    $corpoRequisicao = file_get_contents('php://input');
 
-$mysqli->close();
+    // Transforma o corpo da requisição em um objeto PHP.
+    $objetoJson = json_decode($corpoRequisicao);
+
+    // Como eu não estou usando auto increment no banco de dados, preciso pegar o último id e incrementar.
+
+    // Essa query retorna 0 se a tabela de resenhas estiver vazia. Caso contrário, retorna
+    // o último id adicionado na tabela. 
+    $last_id = $mysqli->query("SELECT CASE 
+                                        WHEN EXISTS(SELECT 1 FROM books_review) 
+                                            THEN(SELECT id FROM books_review ORDER BY id DESC LIMIT 1)
+                                        ELSE 0
+                                    END AS id")->fetch_assoc()['id'];  
+
+    // Insere a nova resenha que foi enviada pra cá.    
+    $result = $mysqli->query("INSERT INTO books_review VALUE ($last_id+1, $objetoJson->data, $objetoJson->nota, '$objetoJson->titulo', '$objetoJson->resenha')");
+
+    // Essa '->' indica que eu estou acessando uma função ou propriedade dentro do objeto. Assim, 
+    // 'objetoJson->titulo' indica que estou acessando a propriedade 'titulo' do objeto 'objetoJson. 
+
+    // Se a query não funcionar, o 'mysqli' irá armazenar 'false' no 'result'. Se funcionar, irá armazenar
+    // true.    
+    echo json_encode($objetoJson);
+
+    $mysqli->close();
 
 ?>

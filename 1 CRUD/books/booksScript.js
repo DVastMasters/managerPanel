@@ -6,16 +6,19 @@
 // aqui:
 
 // Ao carregar o corpo da página, faz uma requisição pra buscar todas as resenhas no backend
-document.body.onload = fetch("/php/get_resenhas.php")
-  .then((res) => fillDisplay(res.data))
+document.body.onload = fetch("php/get_resenhas.php")
+  .then((res) => {
+    res.json;
+    console.log(res.data);
+  })
   .catch((err) => console.log(err));
 
 /* Fazendo a mesma coisa, mas com o XMLHttpRequest (usando a função da linha 19):
 
   requisicaoServidor(
     "GET",
-    "/php/get_resenhas.php",
-    fillDisplay
+    "php/get_resenhas.php",
+    listarResenhas
   );
 */
 
@@ -48,7 +51,7 @@ function requisicaoServidor(metodo, url, funcaoResposta, dados) {
     // esse objeto em uma string (um simples texto que vai estar seguindo o padrão JSON e poderá
     // ser transformado em objeto de novo quando chegar no backend). Para isso, utilizo o método
     // stringfy do objeto JSON (um objeto nativo do javascript).
-    requisicao.send(JSON.stringify(data));
+    requisicao.send(JSON.stringify(dados));
   }
 
   // Quando a estado da requisição mudar, essa função será executada:
@@ -57,7 +60,8 @@ function requisicaoServidor(metodo, url, funcaoResposta, dados) {
     if (requisicao.readyState === 4 && requisicao.status === 200) {
       // Pega a resposta da requisição (que foi mandada pelo backend) e envia para a
       // funcaoRespota.
-      funcaoResposta(this.responseText);
+      console.log(this.responseText);
+      funcaoResposta(requisicao.responseText);
 
       // Caso contrário, informe o erro no console.
     } else {
@@ -66,20 +70,31 @@ function requisicaoServidor(metodo, url, funcaoResposta, dados) {
   };
 }
 
-function fillDisplay(items) {
+function listarResenhas(items) {
+  console.log(items);
+  // Se por algum motivo 'items' for 'undefined', encerramos a função para não ter problemas
+  // com os próximos códigos.
   if (items === undefined) return;
 
-  // Get the display div
-  const booksDiv = document.getElementsByClassName("books-list")[0];
+  // Pega a div que vai ficar todas as resenhas
+  const resenhasDiv = document.getElementsByClassName("resenhas-lista")[0];
 
-  // Clear the display
-  while (booksDiv.firstChild) {
-    booksDiv.firstChild.remove();
+  // Limpa todas as resenhas que estiverem na div. Sem isso, a gente pode ter resenhas
+  // duplicadas.
+  while (resenhasDiv.firstChild) {
+    resenhasDiv.firstChild.remove();
   }
 
+  // Se o backend passou 0 items, isso significa que provavelmente não há nada no banco de dados.
+  // Então encerramos a função por aqui.
   if (!items.length) return;
 
-  // Convert the items string (jsonified) to JSON object.
+  // O 'items' é uma string (em formato JSON) que o backend envia pra cá. Assim, podemos converter
+  // essa string pra um objeto JSON do javascript e coletar as informações que foram passadas.
+
+  // Como o JS não é uma linguagem tipada (não é necessário definir o tipo da variável), eu
+  // estou usando a mesma variável (items) que estava armazenando uma String para, agora,
+  // armazernar um objeto JSON.
   items = JSON.parse(items);
 
   // Items is an array of arrays. First item is id, second is date, and third is title.
@@ -104,7 +119,7 @@ function fillDisplay(items) {
 
     book.addEventListener("click", () => bookView(id.innerText));
 
-    booksDiv.appendChild(book);
+    resenhasDiv.appendChild(book);
   });
 }
 
@@ -120,17 +135,20 @@ function fillDisplay(items) {
   const inputRating = document.getElementsByName("input-rating")[0];
   // Get content input.
   const inputReview = document.getElementsByName("input-review")[0];
+  const inputDate = document.getElementsByName("input-date")[0];
+
+  let dateNow = null;
 
   // When user click on "New Review" button, open the "modalCreateReview" modal.
   document
     .getElementsByName("create")[0]
     .addEventListener("click", function () {
-      console.log(modal);
       modal.style.display = "block";
+
       // Creation date
-      const inputDate = new Date();
+      dateNow = new Date();
       document.getElementsByName("input-date")[0].value =
-        inputDate.toLocaleString();
+        dateNow.toLocaleString();
     });
 
   form.addEventListener("submit", function (e) {
@@ -138,19 +156,20 @@ function fillDisplay(items) {
 
     // Create a book object.
     const book = {
-      date: inputDate.getTime(),
-      rating: inputRating.value,
-      title: inputTitle.value,
-      review: inputReview.value,
+      data: dateNow.getTime(),
+      nota: inputRating.value,
+      titulo: inputTitle.value,
+      resenha: inputReview.value,
     };
 
     // Send the object to server.
-    requestServer("POST", "/books/new_book.php", feedbackCreation, book);
+    requisicaoServidor("POST", "php/new_book.php", feedbackCreation, book);
   });
 
   // Function to receive the server response and give a feedback to user.
   function feedbackCreation(created) {
     if (created) {
+      console.log(created);
       window.alert("Review created successfully!");
       form.reset();
 
@@ -158,7 +177,7 @@ function fillDisplay(items) {
       modal.style.display = "none";
 
       // Reset the thoughts display.
-      requestServer("GET", "/books/get_books.php", fillDisplay);
+      requisicaoServidor("GET", "/php/get_resenhas.php", fillDisplay);
     } else {
       window.alert("Something wrong happened.");
     }
