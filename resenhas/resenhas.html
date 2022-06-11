@@ -35,7 +35,7 @@
     <div class="top-nav">
       <a href="#" title="Página 1">Página 1</a>
       <a href="#" title="Página 2">Página 2</a>
-      <a class="active" href="books.html" title="Resenhas">Resenhas</a>
+      <a class="active" href="resenhas.html" title="Resenhas">Resenhas</a>
       
       <!-- 
           Esse elemento (juntamento com o css) deixa a barra de navegação mais responsiva.
@@ -48,12 +48,12 @@
 
     <!-- Conteúdo principal -->
     <div class="page-main">
-      <button name="create" class="btn-default">Nova Resenha</button>
+      <button name="criar" class="btn-padrao">Nova Resenha</button>
 
       <!-- Fomulário para pesquisar resenhas -->
-      <form name="form-search-books">
-        <input class="input-default" type="text" placeholder="Escreva alguma coisa..." required>
-        <button class="btn-default">Pesquisar</button>
+      <form name="form-pesquisar-resenhas">
+        <input class="input-padrao" type="text" placeholder="Escreva alguma coisa..." required>
+        <button class="btn-padrao">Pesquisar</button>
       </form>
 
       <!-- 
@@ -63,54 +63,59 @@
       <div class="resenhas-lista"></div> 
 
       <!-- Modal pra visualizar uam resenha (oculto por padrão) -->
-      <div class="modal review-view" class="">
-        <div class="m-content">
+      <div class="modal ver-resenha" class="">
+        <div class="modal-conteudo">
 
           <!-- Botão para fechar o modal -->
-          <span class="m-view-close">&times;</span>
+          <span class="icone-modal-ver-fechar modal-icone-fechar">&times;</span>
 
           <!-- Id da resenha (oculto para o usuário, mas será usado no JS) -->
-          <p hidden name="review-id"></p> 
+          <p hidden name="resenha-id"></p> 
 
-          <span class="m-review-date"></span>
-          <h2 class="m-book-title"></h2>
-          <h2 class="m-book-rating"></h2></h2>
-          <p class="m-review-content"></p>
+          <span class="modal-resenha-data"></span>
+          <h2 class="modal-resenha-titulo"></h2>
+          <h2 class="modal-resenha-nota"></h2></h2>
+          <p class="modal-resenha-conteudo"></p>
 
-          <button class="btn-default" name="delete">APAGAR</button>
+          <button class="btn-padrao" name="apagar">APAGAR</button>
 
         </div>
       </div>
 
       <!-- Modal para criar uma resenha (oculto por padrão) -->
-        <div class="modal create-review">
-          <div class="modal-content">
+        <div class="modal criar-resenha">
+          <div class="modal-conteudo">
 
             <!-- Botão para fechar o modal -->
-            <span class="modal-creation-close m-close">&times;</span>
+            <span class="icone-modal-criacao-fechar modal-icone-fechar">&times;</span>
 
             <h2>Criando uma nova resenha</h2>
-            <form name="form-create-review">                        
+            <form name="form-criacao-resenha">                        
 
               <label>Data</label>
-              <input disabled type="text" name="input-date">
+              <input disabled type="text" name="input-data">
               
               <label>Título</label>
-              <input type="text" name="input-title" placeholder="Título do livro" required>
+              <input type="text" name="input-titulo-livro" placeholder="Título do livro" required>
 
               <label>Nota</label>
-              <select name="input-rating" required>
-                <option value="1">1/5</option>
-                <option value="2">2/5</option>
-                <option value="3">3/5</option>
-                <option value="4">4/5</option>
-                <option value="5">5/5</option>
+              <select name="input-nota" required>
+                <option value="1">1/10</option>
+                <option value="2">2/10</option>
+                <option value="3">3/10</option>
+                <option value="4">4/10</option>
+                <option value="5">5/10</option>
+                <option value="6">6/10</option>
+                <option value="7">7/10</option>
+                <option value="8">8/10</option>
+                <option value="9">9/10</option>
+                <option value="10">10/10</option>
               </select>
 
               <label>Resenha</label>
-              <textarea name="input-review" placeholder="Escreva sua resenha.." required></textarea>
+              <textarea name="input-resenha" placeholder="Escreva sua resenha.." required></textarea>
 
-              <input class="btn-default" name="create" type="submit" value="Cadastrar">
+              <input class="btn-padrao" name="criar" type="submit" value="Cadastrar">
                 
             </form>
           </div>
@@ -121,7 +126,7 @@
         Copyright © Rafael Dutra 
     </footer>
 
-    <script src="booksScript.js"></script>
+    <script src="resenhasScript.js"></script>
 
   </body>
 </html>

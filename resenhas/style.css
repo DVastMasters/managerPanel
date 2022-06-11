@@ -85,20 +85,21 @@ body {
   }
 
   /* 
-    Através do JS, quando o usuário clicar no ícone de menu, a classe 'responsive' será adicionada
+    Através do JS, quando o usuário clicar no ícone de menu, a classe 'responsivo' será adicionada
     na barra de navegação superior. Abra o arquivo e visualize, pra facilitar o entendimento.
+    Para entender essa parte, veja também o JS a partir da linha 409.
   */
-  .top-nav.responsive {
+  .top-nav.responsivo {
     position: relative;
   }
 
-  .top-nav.responsive a.icon {
+  .top-nav.responsivo a.icon {
     position: absolute;
     right: 0;
     top: 0;
   }
 
-  .top-nav.responsive a {
+  .top-nav.responsivo a {
     float: none;
     display: block;
     text-align: left;
@@ -119,7 +120,7 @@ body {
 }
 
 /* Estilo padrão dos inputs na página */
-.input-default {
+.input-padrao {
   width: 70%;
   padding: 12px 20px;
   box-sizing: border-box;
@@ -129,12 +130,12 @@ body {
 }
 
 /* Estilo pra quando o usuário tiver clicado no input */
-.input-default:focus {
+.input-padrao:focus {
   outline: none;
 }
 
 /* Estilo padrão para os botões da página */
-.btn-default {
+.btn-padrao {
   background-color: #028cf3;
   color: white;
   border: transparent;
@@ -147,7 +148,7 @@ body {
 }
 
 /* Estilo pra quando o usuário passar o mouse sobre o botão */
-.btn-default:hover {
+.btn-padrao:hover {
   background-color: #0b4b7c;
   transition: 0.2s;
 }
@@ -161,7 +162,7 @@ body {
   gap: 1em;
 }
 
-.book {
+.resenha {
   border-style: solid;
   border-width: 2px;
   border-color: #028cf3;
@@ -173,14 +174,14 @@ body {
   box-shadow: 0px 3px 5px #20cbc1;
 }
 
-.book:hover {
+.resenha:hover {
   background-color: #0b4b7c;
   transition: 0.2s;
   cursor: pointer;
   border: none;
 }
 
-.book-id {
+.resenha-id {
   position: absolute;
   left: 5px;
   top: 4px;
@@ -188,12 +189,12 @@ body {
   font-style: italic;
 }
 
-.book-title {
+.resenha-titulo {
   font-weight: 400;
   font-size: 18px;
 }
 
-.book-date {
+.resenha-data {
   position: absolute;
   right: 5px;
   top: 4px;
@@ -201,7 +202,7 @@ body {
   font-style: italic;
 }
 
-.m-book-date {
+.modal-resenha-data {
   position: absolute;
   color: #aaa;
   left: 10px;
@@ -234,7 +235,7 @@ body {
 }
 
 /* Esse estilo é que define como vai ficar a 'caixa branca'*/
-.modal-content {
+.modal-conteudo {
   background-color: #fefefe;
   margin: 10% auto;
   padding: 20px;
@@ -244,7 +245,7 @@ body {
 }
 
 /* Botão de fechar (Estilo que serve para os dois modais */
-.m-close {
+.modal-icone-fechar {
   position: absolute;
   right: 10px;
   top: 4px;
@@ -254,14 +255,14 @@ body {
 }
 
 /* Estilo que vai ser aplicado quando o usuário passar o mouse sobre o botão de fechar */
-.m-close:hover {
+.modal-icone-fechar:hover {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
 /* Estilização dos inputs */
-.modal-content input[type="text"],
+.modal-conteudo input[type="text"],
 input[type="number"],
 textarea,
 select {
@@ -275,6 +276,6 @@ select {
 }
 
 /* Estilização dos inputs */
-.modal-content textarea {
+.modal-conteudo textarea {
   resize: vertical;
 }

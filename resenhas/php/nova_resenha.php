@@ -10,7 +10,7 @@
     // php://input é uma coleção de dados que recebe todos os dados da requisição depois dos
     // cabeçalhos, ou seja, o corpo da requisição fica armazenado nessa coleção.
 
-    //file_get_contents é uma função que lê um arquivo e passa a informação lida para uma string.
+    // file_get_contents é uma função que lê um arquivo e passa a informação lida para uma string.
     // Para saber mais: https://www.php.net/manual/en/function.file-get-contents.php
 
     // Pega o corpo da requisição
@@ -24,13 +24,13 @@
     // Essa query retorna 0 se a tabela de resenhas estiver vazia. Caso contrário, retorna
     // o último id adicionado na tabela. 
     $last_id = $mysqli->query("SELECT CASE 
-                                        WHEN EXISTS(SELECT 1 FROM books_review) 
-                                            THEN(SELECT id FROM books_review ORDER BY id DESC LIMIT 1)
+                                        WHEN EXISTS(SELECT 1 FROM resenhas) 
+                                            THEN(SELECT id FROM resenhas ORDER BY id DESC LIMIT 1)
                                         ELSE 0
                                     END AS id")->fetch_assoc()['id'];  
 
     // Insere a nova resenha que foi enviada pra cá.    
-    $result = $mysqli->query("INSERT INTO books_review VALUE ($last_id+1, $objetoJson->data, $objetoJson->nota, '$objetoJson->titulo', '$objetoJson->resenha')");
+    $result = $mysqli->query("INSERT INTO resenhas VALUE ($last_id+1, $objetoJson->data, $objetoJson->nota, '$objetoJson->titulo_livro', '$objetoJson->resenha')");
 
     // Essa '->' indica que eu estou acessando uma função ou propriedade dentro do objeto. Assim, 
     // 'objetoJson->titulo' indica que estou acessando a propriedade 'titulo' do objeto 'objetoJson. 
