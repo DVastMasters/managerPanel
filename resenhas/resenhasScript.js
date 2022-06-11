@@ -6,7 +6,7 @@ function requisicaoBackend(metodo, url, funcaoResposta, dados) {
     // Para saber mais: https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
     const requisicao = new XMLHttpRequest();
 
-    // Se o método for GET, eu só preciso abrir a requisição e enviar, pois as informações já
+    // Se o método for GET, eu só preciso abrir a requisição e enviar. As informações já
     // estarão contidas na 'url' (Veja os exemplos a partir da linha 174).
     if (metodo === "GET") {
         // Abre uma nova requisição para a 'url'. Esse 'true' indica que a requisição será ASSÍNCRONA
@@ -36,12 +36,12 @@ function requisicaoBackend(metodo, url, funcaoResposta, dados) {
         requisicao.send(JSON.stringify(dados));
     }
 
-    // Quando a estado da requisição mudar, essa função será executada:
+    // Quando o estado da requisição mudar, essa função será executada:
     // Para saber mais sobre o método: https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/readystatechange_event
     requisicao.onreadystatechange = function () {
         // Se o estado da requisição for DONE e o status foi OK, faça:
         // Para conhecer os 'readyState': https://developer.mozilla.org/pt-BR/docs/Web/API/XMLHttpRequest/readyState
-        // Para conhecer os códigos de Status de requisições WEB: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+        // Para conhecer os códigos de status de requisições WEB: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
         if (requisicao.readyState === 4 && requisicao.status === 200) {
             // Pega a resposta da requisição (que foi mandada pelo backend) e envia para a funcaoRespota (callback).
             // Para entender sobre callback: https://developer.mozilla.org/pt-BR/docs/Glossary/Callback_function
@@ -55,7 +55,6 @@ function requisicaoBackend(metodo, url, funcaoResposta, dados) {
 }
 
 function listarResenhas(resenhas) {
-    console.log("Resenhas" + resenhas);
     // Se por algum motivo 'resenhas' for 'undefined', encerramos a função para não ter problemas
     // com os próximos códigos.
     if (resenhas === undefined) return;
@@ -78,7 +77,7 @@ function listarResenhas(resenhas) {
 
     // Como o JS não é uma linguagem tipada (não é necessário definir o tipo da variável), eu
     // estou usando a mesma variável (resenhas) que estava armazenando a string para, agora,
-    // armazernar um objeto JSON.
+    // armazenar um objeto JSON.
     resenhas = JSON.parse(resenhas);
     // Para conhecer o objeto JSON: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/JSON
 
@@ -117,7 +116,7 @@ function listarResenhas(resenhas) {
         data.innerText = new Date(Number(resenha.data)).toLocaleString();
         // Para saber mais sobre o Date: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Date
 
-        // Cria um elemento 'span' e aloca ele na variável 'titulo'.
+        // Cria um elemento 'span' e aloca ele na variável 'tituloLivro'.
         const tituloLivro = document.createElement("span");
 
         // Define a classe desse elemento como sendo 'resenha-titulo-livro';
@@ -129,7 +128,7 @@ function listarResenhas(resenhas) {
         // Cria um elemento 'div' e aloca ele na variável 'resenhaDiv'.
         const resenhaDiv = document.createElement("div");
 
-        // Define a classe desse elemento como sendo 'resenhaDiv'.
+        // Define a classe desse elemento como sendo 'resenha'.
         resenhaDiv.className = "resenha";
 
         // Coloca o elemento 'id' (criado lá na linha 86) como sendo filho do elemento resenha
@@ -146,7 +145,7 @@ function listarResenhas(resenhas) {
         resenhaDiv.appendChild(data);
 
         // Adiciona um 'EventListener' nessa div. Esse listener vai ficar esperando um 'click' na div
-        // pra executar a função que foi passada como segundo parâmentro. No meu caso, é uma função arrow
+        // pra executar a função que foi passada como segundo parâmetro. No meu caso, é uma função arrow
         // que simplemente executa outra função (verResenha) passando o id da resenha (clicada) como parâmetro.
         // Se eu fizesse assim: resenha.addEventListener("click", verResenha(id.innerText)), não iria
         // funcionar. Pois o listener iria tentar exectuar o RETORNO da 'verResenha' como sendo uma
@@ -183,7 +182,7 @@ function listarResenhas(resenhas) {
     // Pega o input que representa a data de criação da resenha e aloca na variável inputData.
     const inputData = document.getElementsByName("input-data")[0];
 
-    // Cria uma variável, inicialmente nula, que representa a data e hora atual. Será usada posteriormente.
+    // Cria uma variável, inicialmente nula, que representa data e hora. Será usada posteriormente.
     let dateNow = null;
 
     // Pega o botão 'Nova Resenha'.
@@ -196,7 +195,7 @@ function listarResenhas(resenhas) {
         modal.style.display = "block";
 
         // Instancia um objeto Date sem passsar nenhum parâmetro ao construtor, retornando a data e hora atual.
-        // Em seguida, colocar esse objeto dentro da variável criada anteriormente, o 'dateNow'.
+        // Em seguida, coloca esse objeto dentro da variável criada anteriormente, o 'dateNow'.
         dateNow = new Date();
 
         // Converte a data para string e coloca no input de data (O input não é modificado pelo usuário, no meu caso).
@@ -209,7 +208,7 @@ function listarResenhas(resenhas) {
     // e irá executa a função arrow abaixo:
     form.addEventListener("submit", (evento) => {
         // Obs: Quando o listener executa a função, caso a função solicite um parâmetro, ele passa o evento pra função.
-        // Nesse meu caso, eu estou solicitando um parâmetro (o 'e' dento dos parênteses indica isso). Então, quando
+        // Nesse meu caso, eu estou solicitando um parâmetro (o 'evento' dento dos parênteses indica isso). Então, quando
         // o formulário for enviado, o listener vai passar o evento de envio para essa função.
         // Para entender sobre eventos: https://developer.mozilla.org/pt-BR/docs/Web/Events
 
@@ -253,7 +252,7 @@ function listarResenhas(resenhas) {
         } else {
             // Se o backend não puder inserir no BD, informo ao usuário que algo deu errado e não faço mais nada. Você pode fazer com que o backend
             // envie mensagens de erros personalizadas. Aí, de acordo com essas mensagens, você pode informar o usuário o que deu errado.
-            // Como eu não fiz isso, qualquer erro que aparecer, eu irei informar ao usuário a mensagem abaxio:
+            // Como eu não fiz isso, qualquer erro que aparecer, eu irei informar ao usuário a mensagem abaixo:
             window.alert("Ops! Alguma coisa deu errado, tente novamente.");
         }
     }
@@ -293,7 +292,7 @@ function listarResenhas(resenhas) {
     // Pega o input que representa a data da criação da resenha e aloca na variável labelData.
     const labelId = document.getElementsByName("resenha-id")[0];
 
-    // Essa é a função que será chamada quando o usuário clicar na resenha para visualizá-la. Essa é a função que foi
+    // Essa é a função que será chamada quando o usuário clicar na resenha para visualizá-la. Ela foi
     // referenciada na linha 153.
     function verResenha(id) {
         //"Abre" o modal.
@@ -315,7 +314,6 @@ function listarResenhas(resenhas) {
             labelData.innerText = new Date(Number(resenha.data)).toLocaleString();
 
             // Define o conteúdo desse elemento como sendo o atributo 'titulo' do objeto 'resenha'
-            console.log(resenha);
             labelTituloLivro.innerText = resenha.titulo_livro;
 
             // Define o conteúdo desse elemento como sendo o atributo 'nota' do objeto 'resenha'
