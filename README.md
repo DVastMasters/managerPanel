@@ -10,6 +10,8 @@ Crie o banco de dados:
 
 <code>CREATE TABLE resenhas(id INT PRIMARY KEY, data BIGINT, nota TINYINT, titulo_livro VARCHAR(50), resenha TEXT);</code>
 
+OBS: Clique nas imagens para melhor visualização.
+
 Navegue até resenhas.html:
 ![image](https://user-images.githubusercontent.com/49616553/173188569-c781f035-36af-466e-bc29-95ba3b86c21f.png)
 
