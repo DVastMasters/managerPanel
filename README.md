@@ -8,6 +8,8 @@ Crie o banco de dados:
 
 <code>CREATE DATABASE dvmstudio;</code>
 
+<code>USE dvmstudio;</code>
+
 <code>CREATE TABLE resenhas(id INT PRIMARY KEY, data BIGINT, nota TINYINT, titulo_livro VARCHAR(50), resenha TEXT);</code>
 
 OBS: Clique nas imagens para melhor visualização.
