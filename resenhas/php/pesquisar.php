@@ -25,7 +25,7 @@
         $resenha = (object) $linha;
         
         // Adicionando o objeto '$resenha' na array '$resenhas.'
-        array_push($items, $item);
+        array_push($resenhas, $resenha);
     }
 
     // Se o total de resenhas for > 0, faça:

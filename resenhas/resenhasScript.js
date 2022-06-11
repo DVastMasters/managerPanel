@@ -395,6 +395,7 @@ function listarResenhas(resenhas) {
 
         // Pega o valor que foi digitado no input de pesquisa.
         const input = formPesquisar.firstElementChild.value;
+        console.log(input);
 
         // Envia a requisição ao servidor que irá retornar os resultados que batem com o critério digitado.
         requisicaoBackend("GET", `php/pesquisar.php?criterio=${input}`, listarResenhas);
@@ -419,8 +420,8 @@ function listarResenhas(resenhas) {
     // Isso daqui é um belo exemplo de gambiarra, não use. Pegue o elemento pelo id, class ou name e depois
     // insira o EventListener.
     topNav.lastElementChild.addEventListener("click", () => {
-        // Basicamente, esse if else vai ficar adicionando e removendo a classe 'responsive' na barra de navegação
-        // superior. A responsividade é dada justamente por essa classe. Quando a classe 'responsive' está adicionada,
+        // Basicamente, esse if else vai ficar adicionando e removendo a classe 'responsivo' na barra de navegação
+        // superior. A responsividade é dada justamente por essa classe. Quando a classe 'responsivo' está adicionada,
         // o menu de opções fica aberto. Caso contrário, o menu fica fechado. Para visualizar e entender, abra o menu
         // de desenvolvedor do navegador e depois fica clicando no botão de abrir o menu. Fique olhando as classes no
         // html do item 'topNav'.
