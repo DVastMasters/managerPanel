@@ -1,6 +1,6 @@
 # managerPanel
 
-Para testar, clone o repositório direto na pasta htdocs do XAMP (Normalmente, C:\xampp\htdocs) e ligue o apache.
+Para testar, clone o repositório direto na pasta htdocs do XAMP (Normalmente, C:\xampp\htdocs), altere os dados de conexão com o mysql nos arquivos PHP e ligue o apache.
 
 Crie o banco de dados:
 
