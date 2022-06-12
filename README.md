@@ -1,4 +1,4 @@
-# managerPanel
+# painelResenhas
 
 Para testar, clone o repositório direto na pasta htdocs do XAMP (Normalmente, C:\xampp\htdocs), altere os dados de conexão com o mysql nos arquivos PHP e ligue o apache.
 
